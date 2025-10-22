@@ -6,6 +6,10 @@ import { HomeComponent } from './home/home';
 import { authGuard } from './auth.guard';
 import { ChallengeListComponent } from './challenge-list/challenge-list';
 import { ChallengeDetailComponent } from './challenge-detail/challenge-detail';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard';
+import { adminGuard } from './admin.guard';
+import { ProfileComponent } from './profile/profile';
+import { VerifyComponent } from './verify/verify';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -20,4 +24,11 @@ export const routes: Routes = [
       { path: 'challenge/:id', component: ChallengeDetailComponent },
     ],
   },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    canActivate: [adminGuard],
+  },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'verify', component: VerifyComponent },
 ];

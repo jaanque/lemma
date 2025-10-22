@@ -1,0 +1,15 @@
+<h2>Verify Certificate</h2>
+<form (ngSubmit)="verify()">
+  <label for="certificate_id">Certificate ID:</label>
+  <input type="text" id="certificate_id" [(ngModel)]="certificateId" name="certificate_id" required />
+  <button type="submit">Verify</button>
+</form>
+
+<div *ngIf="certificate">
+  <h3>Certificate Found</h3>
+  <p>Challenge: {{ certificate.challenges.title }}</p>
+  <p>User: {{ certificate.profiles.username }}</p>
+  <p>Issued at: {{ certificate.issued_at | date }}</p>
+</div>
+
+<p *ngIf="notFound">Certificate not found.</p>

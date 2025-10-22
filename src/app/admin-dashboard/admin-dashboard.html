@@ -1,0 +1,25 @@
+<h2>Admin Dashboard</h2>
+<h3>Pending Submissions</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Challenge</th>
+      <th>User</th>
+      <th>Repo URL</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let submission of submissions">
+      <td>{{ submission.challenge_id }}</td>
+      <td>{{ submission.user_id }}</td>
+      <td>
+        <a [href]="submission.repo_url" target="_blank">{{ submission.repo_url }}</a>
+      </td>
+      <td>
+        <button (click)="updateSubmissionStatus(submission.id, 'approved')">Approve</button>
+        <button (click)="updateSubmissionStatus(submission.id, 'rejected')">Reject</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

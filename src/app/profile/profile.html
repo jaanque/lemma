@@ -1,0 +1,10 @@
+<h2>My Certificates</h2>
+<ul>
+  <li *ngFor="let certificate of certificates">
+    <p>Challenge: {{ certificate.challenge_id }}</p>
+    <p>Issued at: {{ certificate.issued_at | date }}</p>
+    <p>
+      Verification ID: <code>{{ certificate.id }}</code>
+    </p>
+  </li>
+</ul>
