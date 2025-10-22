@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SupabaseService } from '../supabase';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../notification';
 
 @Component({
   selector: 'app-register',
@@ -13,15 +14,20 @@ export class RegisterComponent {
   email = '';
   password = '';
 
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(
+    private readonly supabase: SupabaseService,
+    private readonly notification: NotificationService
+  ) {}
 
   async register() {
-    const { error } = await this.supabaseService.supabase.auth.signUp({
+    const { error } = await this.supabase.supabase.auth.signUp({
       email: this.email,
       password: this.password,
     });
     if (error) {
-      console.error('Error registering:', error);
+      this.notification.setMessage(error.message);
+    } else {
+      this.notification.setMessage('Registration successful! Please check your email for a confirmation link.');
     }
   }
 }
