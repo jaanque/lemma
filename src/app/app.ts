@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { SupabaseService } from './supabase';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  standalone: true,
 })
 export class App {
-  protected readonly title = signal('lemma');
+  constructor(private readonly supabase: SupabaseService) {}
+
+  async logout() {
+    await this.supabase.supabase.auth.signOut();
+  }
 }
