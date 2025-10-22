@@ -1,0 +1,10 @@
+<div *ngIf="challenge">
+  <h2>{{ challenge.title }}</h2>
+  <p>{{ challenge.description }}</p>
+
+  <form (ngSubmit)="submit()">
+    <label for="repo_url">Repository URL:</label>
+    <input type="text" id="repo_url" [(ngModel)]="repoUrl" name="repo_url" required />
+    <button type="submit">Submit</button>
+  </form>
+</div>

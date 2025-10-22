@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SupabaseService } from '../supabase';
+import { AuthService } from '../auth';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../notification';
 
@@ -15,12 +15,12 @@ export class RegisterComponent {
   password = '';
 
   constructor(
-    private readonly supabase: SupabaseService,
+    private readonly auth: AuthService,
     private readonly notification: NotificationService
   ) {}
 
   async register() {
-    const { error } = await this.supabase.supabase.auth.signUp({
+    const { error } = await this.auth.signUp({
       email: this.email,
       password: this.password,
     });

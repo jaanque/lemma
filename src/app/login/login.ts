@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SupabaseService } from '../supabase';
+import { AuthService } from '../auth';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../notification';
 import { Router } from '@angular/router';
@@ -16,13 +16,13 @@ export class LoginComponent {
   password = '';
 
   constructor(
-    private readonly supabase: SupabaseService,
+    private readonly auth: AuthService,
     private readonly notification: NotificationService,
     private readonly router: Router
   ) {}
 
   async login() {
-    const { error } = await this.supabase.supabase.auth.signInWithPassword({
+    const { error } = await this.auth.signIn({
       email: this.email,
       password: this.password,
     });
